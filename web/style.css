@@ -1,0 +1,105 @@
+
+
+html, body
+{
+	margin:0px;
+	padding: 0px;
+}
+
+#sideBar
+{
+	width:30%;
+	height: 100%;
+	min-width:300px;
+	background-color:red;
+	position: absolute;
+	top:0px;
+	left: 0px;
+}
+
+div#viewBtn {
+    position: relative;
+    width: 20%;
+    display: block;
+    float: left;
+    padding: 10px;
+    text-align: center;
+    background-color: blue;
+    cursor: pointer;
+    left: 20px;
+    color: white;
+    border-radius: 7px;
+    font-family: sans-serif;
+    top: 10px;
+}
+
+div#viewBtn:hover
+{
+	opacity:0.6;
+}
+
+form#postForm {
+    position: relative;
+    top: 120px;
+    width: 100%;
+    float: left;
+    margin-left: 20px;
+}
+
+label
+{
+	font-family: sans-serif;
+	color: white;
+}
+
+input {
+    border-radius: 20px;
+    width: 160px;
+    height: 30px;
+}
+
+div#postData {
+    width: 100px;
+    /* height: 30px; */
+    position: absolute;
+    /* color: blue; */
+    top: 80px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-family: sans-serif;
+    cursor: pointer;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+
+div#postData:hover
+{
+	opacity: 0.6;
+}
+
+#dataContainer
+{
+	width: 70%;
+	height: 100%;
+	background-color:yellow;
+	position: absolute;
+	top:0px;
+	left:30%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
