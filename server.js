@@ -83,14 +83,20 @@ router.route('/list')
 
 
 
-router.route('/list/:list_id')
+router.route('/list/:list_id/:key')
 
 	// get the bear with that id
 	.get(function(req, res) {
 		List.findById(req.params.list_id, function(err, list) {
 			if (err)
 				res.send(err);
-			res.json(list);
+
+			if(list[req.params.key]){
+				res.json(list[req.params.key]);
+			}else{
+				res.json({"message":"KEY DOES NOT EXIST"});
+			}
+			
 		});
 	})
 
@@ -101,6 +107,7 @@ router.route('/list/:list_id')
 			if (err)
 				res.send(err);
 
+			//list[req.params.key] = "test";
 			list.todolist.push(req.body.todolist);
 			list.save(function(err) {
 				if (err)
