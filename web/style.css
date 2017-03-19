@@ -6,6 +6,12 @@ html, body
 	padding: 0px;
 }
 
+#addListItemContainer
+{
+    display: none;
+}
+
+
 #sideBar
 {
 	width:30%;

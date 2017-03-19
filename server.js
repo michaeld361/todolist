@@ -101,7 +101,7 @@ router.route('/list/:list_id/:key')
 	})
 
 	// update the bear with this id
-	.put(function(req, res) {
+	.post(function(req, res) {
 		List.findById(req.params.list_id, function(err, list) {
 
 			if (err)

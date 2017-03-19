@@ -1,6 +1,6 @@
 var app = {};
 app.dom = {};
-
+app.currentList = "";
 //alert(JSON.stringify(resp));
 
 
@@ -18,12 +18,16 @@ app.setupDOM = function()
 	app.dom.dataContainer = document.getElementById('dataContainer');
 	app.dom.bearName = document.getElementById('bearName');
     app.dom.listNameContainer = document.getElementById('listNameContainer');
+    app.dom.appListItemBtn = document.getElementById('addListItemBtn');
+    app.dom.listItem = document.getElementById('listItem');
+    app.dom.addListItemContainer = document.getElementById('addListItemContainer');
 }
 
 app.addListeners = function()
 {
 	app.dom.viewBtn.addEventListener('click', function(){app.showData()});
-	//app.dom.postData.addEventListener('click', function(){app.postData()});
+	app.dom.postData.addEventListener('click', function(){app.postData()});
+    app.dom.appListItemBtn.addEventListener('click', function(){app.addNewItem();});
 }
 
 app.showData = function()
@@ -60,6 +64,8 @@ function showListItems(id)
     app.dom.dataContainer.innerHTML = "";
 
     var listArray = app.newlist[id].todolist;
+    app.currentList = app.newlist[id]._id;
+    console.log("cuurent lisr " + app.currentList);
     for(var i = 0; i < listArray.length; i++)
     {
         var listitem = document.createElement('div');
@@ -71,14 +77,21 @@ function showListItems(id)
     }
 
 
+app.showListUI();
+
 }
 
+
+app.showListUI = function()
+{
+    app.dom.addListItemContainer.style.display = "block";
+}
 
 
 app.postData = function()
 {
 	var bearName = app.dom.bearName.value;
-	$.post("http://localhost:7000/api/bears",
+	$.post("http://localhost:7000/api/list",
     {
         name: bearName
     },
@@ -89,7 +102,22 @@ app.postData = function()
     });
 }
 
+app.addNewItem = function()
+{
+    var listItem = app.dom.listItem.value;
 
+console.log(listItem);
+
+    $.post("http://localhost:7000/api/list/" + app.currentList + "/todolist",
+    {
+        todolist: listItem
+    },
+    function(data, status){
+        var dataa = JSON.stringify(data);
+        console.log("Data: " + dataa + "\nStatus: " + status);
+        app.dom.dataContainer.innerHTML = dataa;
+    });
+}
 
 
 setTimeout(function(){app.init();}, 10);
